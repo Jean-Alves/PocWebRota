@@ -1,0 +1,627 @@
+define(['dart_sdk', 'packages/pocwebrota/app/shared/extensions/string_extension_cpf.dart', 'packages/flutter_modular/src/presenters/widgets/widget_module.dart', 'packages/mobx/src/api/store.dart', 'packages/pocwebrota/app/modules/login/repositories/login_repository.dart', 'packages/mobx/src/api/extensions.dart'], (function load__packages__pocwebrota__app__modules__login__login_store_dart(dart_sdk, packages__pocwebrota__app__shared__extensions__string_extension_cpf$46dart, packages__flutter_modular__src__presenters__widgets__widget_module$46dart, packages__mobx__src__api__store$46dart, packages__pocwebrota__app__modules__login__repositories__login_repository$46dart, packages__mobx__src__api__extensions$46dart) {
+  'use strict';
+  const core = dart_sdk.core;
+  const async = dart_sdk.async;
+  const dart = dart_sdk.dart;
+  const dartx = dart_sdk.dartx;
+  const string_extension_cpf = packages__pocwebrota__app__shared__extensions__string_extension_cpf$46dart.app__shared__extensions__string_extension_cpf;
+  const modular_base = packages__flutter_modular__src__presenters__widgets__widget_module$46dart.src__presenters__modular_base;
+  const store = packages__mobx__src__api__store$46dart.src__api__store;
+  const login_repository = packages__pocwebrota__app__modules__login__repositories__login_repository$46dart.app__modules__login__repositories__login_repository;
+  const core$ = packages__mobx__src__api__extensions$46dart.src__core;
+  const async$ = packages__mobx__src__api__extensions$46dart.src__api__async;
+  const atom_extensions = packages__mobx__src__api__extensions$46dart.src__core__atom_extensions;
+  var login_store = Object.create(dart.library);
+  var $isEmpty = dartx.isEmpty;
+  dart._checkModuleNullSafetyMode(true);
+  var T = {
+    FutureOfbool: () => (T.FutureOfbool = dart.constFn(async.Future$(core.bool)))(),
+    ComputedOfbool: () => (T.ComputedOfbool = dart.constFn(core$.Computed$(core.bool)))(),
+    VoidTobool: () => (T.VoidTobool = dart.constFn(dart.fnType(core.bool, [])))(),
+    VoidTovoid: () => (T.VoidTovoid = dart.constFn(dart.fnType(dart.void, [])))(),
+    FutureOfvoid: () => (T.FutureOfvoid = dart.constFn(async.Future$(dart.void)))(),
+    VoidToFutureOfvoid: () => (T.VoidToFutureOfvoid = dart.constFn(dart.fnType(T.FutureOfvoid(), [])))()
+  };
+  var T$Eval = Object.assign({
+    _: () => T$Eval
+  }, T);
+  var S = {
+    _: () => S
+  };
+  var S$Eval = Object.assign({
+    _: () => S$Eval
+  }, S);
+  const CT = Object.create({
+    _: () => (C, CT)
+  });
+  var C = [];
+  var I = [
+    "file:///C:/Users/jean.alves.INDIGOSOFT/Desktop/dds/POC/pocwebrota/lib/app/modules/login/login_store.dart",
+    "package:pocwebrota/app/modules/login/login_store.dart",
+    "file:///C:/Users/jean.alves.INDIGOSOFT/Desktop/dds/POC/pocwebrota/lib/app/modules/login/login_store.g.dart"
+  ];
+  var _$documentValidComputed = dart.privateName(login_store, "_$documentValidComputed");
+  var _$emailValidComputed = dart.privateName(login_store, "_$emailValidComputed");
+  var _$loadingAtom = dart.privateName(login_store, "_$loadingAtom");
+  var _$rememberMeAtom = dart.privateName(login_store, "_$rememberMeAtom");
+  var _$isCpfAtom = dart.privateName(login_store, "_$isCpfAtom");
+  var _$documentAtom = dart.privateName(login_store, "_$documentAtom");
+  var _$passwordAtom = dart.privateName(login_store, "_$passwordAtom");
+  var _$passwordVisibleAtom = dart.privateName(login_store, "_$passwordVisibleAtom");
+  var _$onNextPageAsyncAction = dart.privateName(login_store, "_$onNextPageAsyncAction");
+  var _$_LoginStoreBaseActionController = dart.privateName(login_store, "_$_LoginStoreBaseActionController");
+  var loginRepository$ = dart.privateName(login_store, "_LoginStoreBase.loginRepository");
+  var loading = dart.privateName(login_store, "_LoginStoreBase.loading");
+  var rememberMe = dart.privateName(login_store, "_LoginStoreBase.rememberMe");
+  var isCpf = dart.privateName(login_store, "_LoginStoreBase.isCpf");
+  var document = dart.privateName(login_store, "_LoginStoreBase.document");
+  var password = dart.privateName(login_store, "_LoginStoreBase.password");
+  var passwordVisible = dart.privateName(login_store, "_LoginStoreBase.passwordVisible");
+  const Object_Store$36 = class Object_Store extends core.Object {};
+  (Object_Store$36.new = function() {
+  }).prototype = Object_Store$36.prototype;
+  dart.applyMixin(Object_Store$36, store.Store);
+  login_store._LoginStoreBase = class _LoginStoreBase extends Object_Store$36 {
+    get loginRepository() {
+      return this[loginRepository$];
+    }
+    set loginRepository(value) {
+      this[loginRepository$] = value;
+    }
+    get loading() {
+      return this[loading];
+    }
+    set loading(value) {
+      this[loading] = value;
+    }
+    get rememberMe() {
+      return this[rememberMe];
+    }
+    set rememberMe(value) {
+      this[rememberMe] = value;
+    }
+    get isCpf() {
+      return this[isCpf];
+    }
+    set isCpf(value) {
+      this[isCpf] = value;
+    }
+    get document() {
+      return this[document];
+    }
+    set document(value) {
+      this[document] = value;
+    }
+    get password() {
+      return this[password];
+    }
+    set password(value) {
+      this[password] = value;
+    }
+    get passwordVisible() {
+      return this[passwordVisible];
+    }
+    set passwordVisible(value) {
+      this[passwordVisible] = value;
+    }
+    tooglePasswordVisible() {
+      this.passwordVisible = !dart.test(this.passwordVisible);
+    }
+    toogleButton(cpf) {
+      if (cpf == null) dart.nullFailed(I[0], 36, 26, "cpf");
+      this.isCpf = cpf;
+      this.document = "";
+    }
+    get documentValid() {
+      return this.document[$isEmpty] || this.document.length < 14 ? false : dart.test(string_extension_cpf['Cpf|isValid'](this.document)) ? false : true;
+    }
+    get emailValid() {
+      return this.document[$isEmpty] || dart.test(core.RegExp.new("^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\\.[a-zA-Z]+").hasMatch(this.document)) ? false : true;
+    }
+    onRememberMeChanged(checked) {
+      this.rememberMe = checked == null ? false : checked;
+    }
+    setDocument(documentText) {
+      if (documentText == null) dart.nullFailed(I[0], 60, 27, "documentText");
+      if (dart.test(this.loading)) return;
+      this.document = documentText;
+    }
+    setPassword(pass) {
+      if (pass == null) dart.nullFailed(I[0], 65, 27, "pass");
+      if (dart.test(this.loading)) return;
+      this.password = pass;
+    }
+    onNextPage() {
+      return async.async(dart.void, (function* onNextPage() {
+        if (dart.test(this.loading)) return;
+        if (this.document[$isEmpty]) return;
+        this.loading = true;
+        if (dart.test(this.isCpf)) {
+          if (dart.test(string_extension_cpf['Cpf|isValid'](this.document))) {
+            let verify = (yield this.verifyCpf(this.document));
+            if (dart.test(verify)) {
+              modular_base.Modular.to.navigate("/login/password");
+            } else {
+              modular_base.Modular.to.navigate("/login/warningPage");
+            }
+          }
+        } else {
+          let emailValid = core.RegExp.new("^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\\.[a-zA-Z]+").hasMatch(this.document);
+          if (dart.test(emailValid)) {
+            let verify = (yield this.verifyEmail(this.document));
+            if (dart.test(verify)) {
+              modular_base.Modular.to.navigate("/login/password");
+            } else {
+              modular_base.Modular.to.navigate("/login/warningPage");
+            }
+          }
+        }
+        this.loading = false;
+      }).bind(this));
+    }
+    verifyCpf(cpf) {
+      if (cpf == null) dart.nullFailed(I[0], 106, 33, "cpf");
+      return async.async(core.bool, (function* verifyCpf() {
+        try {
+          this.loading = true;
+          let valid = (yield this.loginRepository.validCpf(cpf));
+          return valid;
+        } catch (e$) {
+          let e = dart.getThrown(e$);
+          if (core.Object.is(e)) {
+          } else
+            throw e$;
+        }
+        this.loading = false;
+        return T.FutureOfbool().value(false);
+      }).bind(this));
+    }
+    verifyEmail(email) {
+      if (email == null) dart.nullFailed(I[0], 118, 35, "email");
+      return async.async(core.bool, (function* verifyEmail() {
+        try {
+          this.loading = true;
+          let valid = (yield this.loginRepository.validEmail(email));
+          return valid;
+        } catch (e$) {
+          let e = dart.getThrown(e$);
+          if (core.Object.is(e)) {
+          } else
+            throw e$;
+        }
+        this.loading = false;
+        return T.FutureOfbool().value(false);
+      }).bind(this));
+    }
+  };
+  (login_store._LoginStoreBase.new = function(loginRepository) {
+    if (loginRepository == null) dart.nullFailed(I[0], 12, 24, "loginRepository");
+    this[loading] = false;
+    this[rememberMe] = false;
+    this[isCpf] = true;
+    this[document] = "";
+    this[password] = "";
+    this[passwordVisible] = false;
+    this[loginRepository$] = loginRepository;
+    ;
+  }).prototype = login_store._LoginStoreBase.prototype;
+  dart.addTypeTests(login_store._LoginStoreBase);
+  dart.addTypeCaches(login_store._LoginStoreBase);
+  dart.setMethodSignature(login_store._LoginStoreBase, () => ({
+    __proto__: dart.getMethods(login_store._LoginStoreBase.__proto__),
+    tooglePasswordVisible: dart.fnType(dart.void, []),
+    toogleButton: dart.fnType(dart.void, [core.bool]),
+    onRememberMeChanged: dart.fnType(dart.void, [dart.nullable(core.bool)]),
+    setDocument: dart.fnType(dart.void, [core.String]),
+    setPassword: dart.fnType(dart.void, [core.String]),
+    onNextPage: dart.fnType(async.Future$(dart.void), []),
+    verifyCpf: dart.fnType(async.Future$(core.bool), [core.String]),
+    verifyEmail: dart.fnType(async.Future$(core.bool), [core.String])
+  }));
+  dart.setGetterSignature(login_store._LoginStoreBase, () => ({
+    __proto__: dart.getGetters(login_store._LoginStoreBase.__proto__),
+    documentValid: core.bool,
+    emailValid: core.bool
+  }));
+  dart.setLibraryUri(login_store._LoginStoreBase, I[1]);
+  dart.setFieldSignature(login_store._LoginStoreBase, () => ({
+    __proto__: dart.getFields(login_store._LoginStoreBase.__proto__),
+    loginRepository: dart.fieldType(login_repository.LoginRepository),
+    loading: dart.fieldType(core.bool),
+    rememberMe: dart.fieldType(core.bool),
+    isCpf: dart.fieldType(core.bool),
+    document: dart.fieldType(core.String),
+    password: dart.fieldType(core.String),
+    passwordVisible: dart.fieldType(core.bool)
+  }));
+  var _$36documentValidComputed = dart.privateName(login_store, "_$LoginStore._$documentValidComputed");
+  var _$36emailValidComputed = dart.privateName(login_store, "_$LoginStore._$emailValidComputed");
+  var _$36loadingAtom = dart.privateName(login_store, "_$LoginStore._$loadingAtom");
+  var _$36rememberMeAtom = dart.privateName(login_store, "_$LoginStore._$rememberMeAtom");
+  var _$36isCpfAtom = dart.privateName(login_store, "_$LoginStore._$isCpfAtom");
+  var _$36documentAtom = dart.privateName(login_store, "_$LoginStore._$documentAtom");
+  var _$36passwordAtom = dart.privateName(login_store, "_$LoginStore._$passwordAtom");
+  var _$36passwordVisibleAtom = dart.privateName(login_store, "_$LoginStore._$passwordVisibleAtom");
+  var _$36onNextPageAsyncAction = dart.privateName(login_store, "_$LoginStore._$onNextPageAsyncAction");
+  var _$36_LoginStoreBaseActionController = dart.privateName(login_store, "_$LoginStore._$_LoginStoreBaseActionController");
+  login_store._$LoginStore = class _$36LoginStore extends core.Object {};
+  login_store._$LoginStore[dart.mixinOn] = __$36LoginStore$36_LoginStoreBase$36Store => {
+    class _$36LoginStore extends __$36LoginStore$36_LoginStoreBase$36Store {
+      get [_$documentValidComputed]() {
+        return this[_$36documentValidComputed];
+      }
+      set [_$documentValidComputed](value) {
+        this[_$36documentValidComputed] = value;
+      }
+      get [_$emailValidComputed]() {
+        return this[_$36emailValidComputed];
+      }
+      set [_$emailValidComputed](value) {
+        this[_$36emailValidComputed] = value;
+      }
+      get [_$loadingAtom]() {
+        return this[_$36loadingAtom];
+      }
+      set [_$loadingAtom](value) {
+        super[_$loadingAtom] = value;
+      }
+      get [_$rememberMeAtom]() {
+        return this[_$36rememberMeAtom];
+      }
+      set [_$rememberMeAtom](value) {
+        super[_$rememberMeAtom] = value;
+      }
+      get [_$isCpfAtom]() {
+        return this[_$36isCpfAtom];
+      }
+      set [_$isCpfAtom](value) {
+        super[_$isCpfAtom] = value;
+      }
+      get [_$documentAtom]() {
+        return this[_$36documentAtom];
+      }
+      set [_$documentAtom](value) {
+        super[_$documentAtom] = value;
+      }
+      get [_$passwordAtom]() {
+        return this[_$36passwordAtom];
+      }
+      set [_$passwordAtom](value) {
+        super[_$passwordAtom] = value;
+      }
+      get [_$passwordVisibleAtom]() {
+        return this[_$36passwordVisibleAtom];
+      }
+      set [_$passwordVisibleAtom](value) {
+        super[_$passwordVisibleAtom] = value;
+      }
+      get [_$onNextPageAsyncAction]() {
+        return this[_$36onNextPageAsyncAction];
+      }
+      set [_$onNextPageAsyncAction](value) {
+        super[_$onNextPageAsyncAction] = value;
+      }
+      get [_$_LoginStoreBaseActionController]() {
+        return this[_$36_LoginStoreBaseActionController];
+      }
+      set [_$_LoginStoreBaseActionController](value) {
+        super[_$_LoginStoreBaseActionController] = value;
+      }
+      get documentValid() {
+        let t2;
+        return (t2 = this[_$documentValidComputed], t2 == null ? this[_$documentValidComputed] = T.ComputedOfbool().new(dart.fn(() => super.documentValid, T.VoidTobool()), {name: "_LoginStoreBase.documentValid"}) : t2).value;
+      }
+      get emailValid() {
+        let t2;
+        return (t2 = this[_$emailValidComputed], t2 == null ? this[_$emailValidComputed] = T.ComputedOfbool().new(dart.fn(() => super.emailValid, T.VoidTobool()), {name: "_LoginStoreBase.emailValid"}) : t2).value;
+      }
+      get loading() {
+        atom_extensions['AtomSpyReporter|reportRead'](this[_$loadingAtom]);
+        return super.loading;
+      }
+      set loading(value) {
+        if (value == null) dart.nullFailed(I[2], 36, 20, "value");
+        atom_extensions['AtomSpyReporter|reportWrite'](core.bool, this[_$loadingAtom], value, super.loading, dart.fn(() => {
+          super.loading = value;
+        }, T.VoidTovoid()));
+      }
+      get rememberMe() {
+        atom_extensions['AtomSpyReporter|reportRead'](this[_$rememberMeAtom]);
+        return super.rememberMe;
+      }
+      set rememberMe(value) {
+        if (value == null) dart.nullFailed(I[2], 51, 23, "value");
+        atom_extensions['AtomSpyReporter|reportWrite'](core.bool, this[_$rememberMeAtom], value, super.rememberMe, dart.fn(() => {
+          super.rememberMe = value;
+        }, T.VoidTovoid()));
+      }
+      get isCpf() {
+        atom_extensions['AtomSpyReporter|reportRead'](this[_$isCpfAtom]);
+        return super.isCpf;
+      }
+      set isCpf(value) {
+        if (value == null) dart.nullFailed(I[2], 66, 18, "value");
+        atom_extensions['AtomSpyReporter|reportWrite'](core.bool, this[_$isCpfAtom], value, super.isCpf, dart.fn(() => {
+          super.isCpf = value;
+        }, T.VoidTovoid()));
+      }
+      get document() {
+        atom_extensions['AtomSpyReporter|reportRead'](this[_$documentAtom]);
+        return super.document;
+      }
+      set document(value) {
+        if (value == null) dart.nullFailed(I[2], 81, 23, "value");
+        atom_extensions['AtomSpyReporter|reportWrite'](core.String, this[_$documentAtom], value, super.document, dart.fn(() => {
+          super.document = value;
+        }, T.VoidTovoid()));
+      }
+      get password() {
+        atom_extensions['AtomSpyReporter|reportRead'](this[_$passwordAtom]);
+        return super.password;
+      }
+      set password(value) {
+        if (value == null) dart.nullFailed(I[2], 96, 23, "value");
+        atom_extensions['AtomSpyReporter|reportWrite'](core.String, this[_$passwordAtom], value, super.password, dart.fn(() => {
+          super.password = value;
+        }, T.VoidTovoid()));
+      }
+      get passwordVisible() {
+        atom_extensions['AtomSpyReporter|reportRead'](this[_$passwordVisibleAtom]);
+        return super.passwordVisible;
+      }
+      set passwordVisible(value) {
+        if (value == null) dart.nullFailed(I[2], 111, 28, "value");
+        atom_extensions['AtomSpyReporter|reportWrite'](core.bool, this[_$passwordVisibleAtom], value, super.passwordVisible, dart.fn(() => {
+          super.passwordVisible = value;
+        }, T.VoidTovoid()));
+      }
+      onNextPage() {
+        return this[_$onNextPageAsyncAction].run(dart.void, dart.fn(() => super.onNextPage(), T.VoidToFutureOfvoid()));
+      }
+      tooglePasswordVisible() {
+        let _$36actionInfo = this[_$_LoginStoreBaseActionController].startAction({name: "_LoginStoreBase.tooglePasswordVisible"});
+        try {
+          return super.tooglePasswordVisible();
+        } finally {
+          this[_$_LoginStoreBaseActionController].endAction(_$36actionInfo);
+        }
+      }
+      toogleButton(cpf) {
+        if (cpf == null) dart.nullFailed(I[2], 139, 26, "cpf");
+        let _$36actionInfo = this[_$_LoginStoreBaseActionController].startAction({name: "_LoginStoreBase.toogleButton"});
+        try {
+          return super.toogleButton(cpf);
+        } finally {
+          this[_$_LoginStoreBaseActionController].endAction(_$36actionInfo);
+        }
+      }
+      onRememberMeChanged(checked) {
+        let _$36actionInfo = this[_$_LoginStoreBaseActionController].startAction({name: "_LoginStoreBase.onRememberMeChanged"});
+        try {
+          return super.onRememberMeChanged(checked);
+        } finally {
+          this[_$_LoginStoreBaseActionController].endAction(_$36actionInfo);
+        }
+      }
+      toString() {
+        return "loading: " + dart.str(this.loading) + ",\nrememberMe: " + dart.str(this.rememberMe) + ",\nisCpf: " + dart.str(this.isCpf) + ",\ndocument: " + dart.str(this.document) + ",\npassword: " + dart.str(this.password) + ",\npasswordVisible: " + dart.str(this.passwordVisible) + ",\ndocumentValid: " + dart.str(this.documentValid) + ",\nemailValid: " + dart.str(this.emailValid) + "\n    ";
+      }
+    }
+    dart.defineExtensionMethods(_$36LoginStore, ['toString']);
+    return _$36LoginStore;
+  };
+  (login_store._$LoginStore[dart.mixinNew] = function() {
+    this[_$36documentValidComputed] = null;
+    this[_$36emailValidComputed] = null;
+    this[_$36loadingAtom] = core$.Atom.new({name: "_LoginStoreBase.loading"});
+    this[_$36rememberMeAtom] = core$.Atom.new({name: "_LoginStoreBase.rememberMe"});
+    this[_$36isCpfAtom] = core$.Atom.new({name: "_LoginStoreBase.isCpf"});
+    this[_$36documentAtom] = core$.Atom.new({name: "_LoginStoreBase.document"});
+    this[_$36passwordAtom] = core$.Atom.new({name: "_LoginStoreBase.password"});
+    this[_$36passwordVisibleAtom] = core$.Atom.new({name: "_LoginStoreBase.passwordVisible"});
+    this[_$36onNextPageAsyncAction] = new async$.AsyncAction.new("_LoginStoreBase.onNextPage");
+    this[_$36_LoginStoreBaseActionController] = new core$.ActionController.new({name: "_LoginStoreBase"});
+  }).prototype = login_store._$LoginStore.prototype;
+  dart.addTypeTests(login_store._$LoginStore);
+  dart.addTypeCaches(login_store._$LoginStore);
+  login_store._$LoginStore[dart.implements] = () => [store.Store, login_store._LoginStoreBase];
+  dart.setMethodSignature(login_store._$LoginStore, () => ({
+    __proto__: dart.getMethods(login_store._$LoginStore.__proto__),
+    onNextPage: dart.fnType(async.Future$(dart.void), []),
+    tooglePasswordVisible: dart.fnType(dart.void, []),
+    toogleButton: dart.fnType(dart.void, [core.bool]),
+    onRememberMeChanged: dart.fnType(dart.void, [dart.nullable(core.bool)])
+  }));
+  dart.setGetterSignature(login_store._$LoginStore, () => ({
+    __proto__: dart.getGetters(login_store._$LoginStore.__proto__),
+    documentValid: core.bool,
+    emailValid: core.bool,
+    loading: core.bool,
+    rememberMe: core.bool,
+    isCpf: core.bool,
+    document: core.String,
+    password: core.String,
+    passwordVisible: core.bool
+  }));
+  dart.setSetterSignature(login_store._$LoginStore, () => ({
+    __proto__: dart.getSetters(login_store._$LoginStore.__proto__),
+    loading: core.bool,
+    rememberMe: core.bool,
+    isCpf: core.bool,
+    document: core.String,
+    password: core.String,
+    passwordVisible: core.bool
+  }));
+  dart.setLibraryUri(login_store._$LoginStore, I[1]);
+  dart.setFieldSignature(login_store._$LoginStore, () => ({
+    __proto__: dart.getFields(login_store._$LoginStore.__proto__),
+    [_$documentValidComputed]: dart.fieldType(dart.nullable(core$.Computed$(core.bool))),
+    [_$emailValidComputed]: dart.fieldType(dart.nullable(core$.Computed$(core.bool))),
+    [_$loadingAtom]: dart.finalFieldType(core$.Atom),
+    [_$rememberMeAtom]: dart.finalFieldType(core$.Atom),
+    [_$isCpfAtom]: dart.finalFieldType(core$.Atom),
+    [_$documentAtom]: dart.finalFieldType(core$.Atom),
+    [_$passwordAtom]: dart.finalFieldType(core$.Atom),
+    [_$passwordVisibleAtom]: dart.finalFieldType(core$.Atom),
+    [_$onNextPageAsyncAction]: dart.finalFieldType(async$.AsyncAction),
+    [_$_LoginStoreBaseActionController]: dart.finalFieldType(core$.ActionController)
+  }));
+  const _LoginStoreBase__$36LoginStore$36 = class _LoginStoreBase__$36LoginStore extends login_store._LoginStoreBase {};
+  (_LoginStoreBase__$36LoginStore$36.new = function(loginRepository) {
+    login_store._$LoginStore[dart.mixinNew].call(this);
+    _LoginStoreBase__$36LoginStore$36.__proto__.new.call(this, loginRepository);
+  }).prototype = _LoginStoreBase__$36LoginStore$36.prototype;
+  dart.applyMixin(_LoginStoreBase__$36LoginStore$36, login_store._$LoginStore);
+  login_store.LoginStore = class LoginStore extends _LoginStoreBase__$36LoginStore$36 {
+    get [_$documentValidComputed]() {
+      return super[_$documentValidComputed];
+    }
+    set [_$documentValidComputed](value) {
+      return super[_$documentValidComputed] = value;
+    }
+    get [_$emailValidComputed]() {
+      return super[_$emailValidComputed];
+    }
+    set [_$emailValidComputed](value) {
+      return super[_$emailValidComputed] = value;
+    }
+    get loading() {
+      return super.loading;
+    }
+    set loading(value) {
+      if (value == null) dart.nullFailed(I[0], 8, 7, "value");
+      return super.loading = value;
+    }
+    get rememberMe() {
+      return super.rememberMe;
+    }
+    set rememberMe(value) {
+      if (value == null) dart.nullFailed(I[0], 8, 7, "value");
+      return super.rememberMe = value;
+    }
+    get isCpf() {
+      return super.isCpf;
+    }
+    set isCpf(value) {
+      if (value == null) dart.nullFailed(I[0], 8, 7, "value");
+      return super.isCpf = value;
+    }
+    get document() {
+      return super.document;
+    }
+    set document(value) {
+      if (value == null) dart.nullFailed(I[0], 8, 7, "value");
+      return super.document = value;
+    }
+    get password() {
+      return super.password;
+    }
+    set password(value) {
+      if (value == null) dart.nullFailed(I[0], 8, 7, "value");
+      return super.password = value;
+    }
+    get passwordVisible() {
+      return super.passwordVisible;
+    }
+    set passwordVisible(value) {
+      if (value == null) dart.nullFailed(I[0], 8, 7, "value");
+      return super.passwordVisible = value;
+    }
+    get documentValid() {
+      return super.documentValid;
+    }
+    get emailValid() {
+      return super.emailValid;
+    }
+    get [_$loadingAtom]() {
+      return super[_$loadingAtom];
+    }
+    get [_$rememberMeAtom]() {
+      return super[_$rememberMeAtom];
+    }
+    get [_$isCpfAtom]() {
+      return super[_$isCpfAtom];
+    }
+    get [_$documentAtom]() {
+      return super[_$documentAtom];
+    }
+    get [_$passwordAtom]() {
+      return super[_$passwordAtom];
+    }
+    get [_$passwordVisibleAtom]() {
+      return super[_$passwordVisibleAtom];
+    }
+    get [_$onNextPageAsyncAction]() {
+      return super[_$onNextPageAsyncAction];
+    }
+    onNextPage() {
+      return super.onNextPage();
+    }
+    get [_$_LoginStoreBaseActionController]() {
+      return super[_$_LoginStoreBaseActionController];
+    }
+    tooglePasswordVisible() {
+      return super.tooglePasswordVisible();
+    }
+    toogleButton(cpf) {
+      if (cpf == null) dart.nullFailed(I[0], 8, 7, "cpf");
+      return super.toogleButton(cpf);
+    }
+    onRememberMeChanged(checked) {
+      return super.onRememberMeChanged(checked);
+    }
+    toString() {
+      return super.toString();
+    }
+  };
+  (login_store.LoginStore.new = function(loginRepository) {
+    if (loginRepository == null) dart.nullFailed(I[0], 8, 7, "loginRepository");
+    login_store.LoginStore.__proto__.new.call(this, loginRepository);
+    ;
+  }).prototype = login_store.LoginStore.prototype;
+  dart.addTypeTests(login_store.LoginStore);
+  dart.addTypeCaches(login_store.LoginStore);
+  dart.setGetterSignature(login_store.LoginStore, () => ({
+    __proto__: dart.getGetters(login_store.LoginStore.__proto__),
+    [_$documentValidComputed]: dart.nullable(core$.Computed$(core.bool)),
+    [_$emailValidComputed]: dart.nullable(core$.Computed$(core.bool)),
+    loading: core.bool,
+    rememberMe: core.bool,
+    isCpf: core.bool,
+    document: core.String,
+    password: core.String,
+    passwordVisible: core.bool,
+    [_$loadingAtom]: core$.Atom,
+    [_$rememberMeAtom]: core$.Atom,
+    [_$isCpfAtom]: core$.Atom,
+    [_$documentAtom]: core$.Atom,
+    [_$passwordAtom]: core$.Atom,
+    [_$passwordVisibleAtom]: core$.Atom,
+    [_$onNextPageAsyncAction]: async$.AsyncAction,
+    [_$_LoginStoreBaseActionController]: core$.ActionController
+  }));
+  dart.setSetterSignature(login_store.LoginStore, () => ({
+    __proto__: dart.getSetters(login_store.LoginStore.__proto__),
+    [_$documentValidComputed]: dart.nullable(core$.Computed$(core.bool)),
+    [_$emailValidComputed]: dart.nullable(core$.Computed$(core.bool)),
+    loading: core.bool,
+    rememberMe: core.bool,
+    isCpf: core.bool,
+    document: core.String,
+    password: core.String,
+    passwordVisible: core.bool
+  }));
+  dart.setLibraryUri(login_store.LoginStore, I[1]);
+  dart.defineExtensionMethods(login_store.LoginStore, ['toString']);
+  dart.trackLibraries("packages/pocwebrota/app/modules/login/login_store.dart", {
+    "package:pocwebrota/app/modules/login/login_store.dart": login_store
+  }, {
+    "package:pocwebrota/app/modules/login/login_store.dart": ["login_store.g.dart"]
+  }, '{"version":3,"sourceRoot":"","sources":["login_store.dart","login_store.g.dart"],"names":[],"mappings":"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","file":"../../../../../../../../../../packages/pocwebrota/app/modules/login/login_store.dart.lib.js"}');
+  // Exports:
+  return {
+    app__modules__login__login_store: login_store
+  };
+}));
+
+//# sourceMappingURL=login_store.dart.lib.js.map

@@ -1,0 +1,4 @@
+io/flutter/plugins/GeneratedPluginRegistrant.java
+ io.flutter.plugins.GeneratedPluginRegistrant
+br/com/dds/pocwebrota/BuildConfig.java
+ br.com.dds.pocwebrota.BuildConfig

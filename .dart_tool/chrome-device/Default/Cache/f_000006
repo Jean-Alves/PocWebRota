@@ -1,0 +1,574 @@
+define(['dart_sdk', 'packages/triple/src/models/triple_model.dart', 'packages/async/src/stream_queue.dart', 'packages/dartz/dartz.dart'], (function load__packages__triple__src__memento_mixin_dart(dart_sdk, packages__triple__src__models__triple_model$46dart, packages__async__src__stream_queue$46dart, packages__dartz__dartz$46dart) {
+  'use strict';
+  const core = dart_sdk.core;
+  const _interceptors = dart_sdk._interceptors;
+  const math = dart_sdk.math;
+  const _internal = dart_sdk._internal;
+  const async = dart_sdk.async;
+  const collection = dart_sdk.collection;
+  const dart = dart_sdk.dart;
+  const dartx = dart_sdk.dartx;
+  const triple_model = packages__triple__src__models__triple_model$46dart.src__models__triple_model;
+  const cancelable_operation = packages__async__src__stream_queue$46dart.src__cancelable_operation;
+  const dartz = packages__dartz__dartz$46dart.dartz;
+  var memento_mixin = Object.create(dart.library);
+  var dispatched_triple = Object.create(dart.library);
+  var store = Object.create(dart.library);
+  var triple = Object.create(dart.library);
+  var $length = dartx.length;
+  var $isNotEmpty = dartx.isNotEmpty;
+  var $add = dartx.add;
+  var $take = dartx.take;
+  var $toList = dartx.toList;
+  var $clear = dartx.clear;
+  var $addAll = dartx.addAll;
+  var $removeAt = dartx.removeAt;
+  var $_get = dartx._get;
+  var $runtimeType = dartx.runtimeType;
+  var $toString = dartx.toString;
+  dart._checkModuleNullSafetyMode(true);
+  var T = {
+    dynamicToNull: () => (T.dynamicToNull = dart.constFn(dart.fnType(core.Null, [dart.dynamic])))(),
+    ObjectAndStackTraceToNull: () => (T.ObjectAndStackTraceToNull = dart.constFn(dart.fnType(core.Null, [core.Object, core.StackTrace])))(),
+    dynamicTovoid: () => (T.dynamicTovoid = dart.constFn(dart.fnType(dart.void, [dart.dynamic])))(),
+    VoidTovoid: () => (T.VoidTovoid = dart.constFn(dart.fnType(dart.void, [])))(),
+    DispatchedTripleOfObject$Object: () => (T.DispatchedTripleOfObject$Object = dart.constFn(dispatched_triple.DispatchedTriple$(core.Object, core.Object)))(),
+    DispatchedTripleOfObject$ObjectTovoid: () => (T.DispatchedTripleOfObject$ObjectTovoid = dart.constFn(dart.fnType(dart.void, [T.DispatchedTripleOfObject$Object()])))(),
+    LinkedHashSetOfDispatchedTripleOfObject$ObjectTovoid: () => (T.LinkedHashSetOfDispatchedTripleOfObject$ObjectTovoid = dart.constFn(collection.LinkedHashSet$(T.DispatchedTripleOfObject$ObjectTovoid())))()
+  };
+  var T$Eval = Object.assign({
+    _: () => T$Eval
+  }, T);
+  var S = {
+    _: () => S
+  };
+  var S$Eval = Object.assign({
+    _: () => S$Eval
+  }, S);
+  const CT = Object.create({
+    _: () => (C, CT)
+  });
+  dart.defineLazy(CT, {
+    get C0() {
+      return C[0] = dart.const({
+        __proto__: core.Duration.prototype,
+        [Duration__duration]: 50000
+      });
+    }
+  }, false);
+  var C = [void 0];
+  var I = [
+    "package:triple/src/memento_mixin.dart",
+    "file:///C:/src/flutter/.pub-cache/hosted/pub.dartlang.org/triple-1.0.1/lib/src/memento_mixin.dart",
+    "file:///C:/src/flutter/.pub-cache/hosted/pub.dartlang.org/triple-1.0.1/lib/src/store.dart",
+    "package:triple/src/store.dart",
+    "file:///C:/src/flutter/.pub-cache/hosted/pub.dartlang.org/triple-1.0.1/lib/src/models/dispatched_triple.dart",
+    "package:triple/src/models/dispatched_triple.dart"
+  ];
+  memento_mixin._MutableIndex = class _MutableIndex extends core.Object {};
+  (memento_mixin._MutableIndex.new = function() {
+    this.value = 0;
+    ;
+  }).prototype = memento_mixin._MutableIndex.prototype;
+  dart.addTypeTests(memento_mixin._MutableIndex);
+  dart.addTypeCaches(memento_mixin._MutableIndex);
+  dart.setLibraryUri(memento_mixin._MutableIndex, I[0]);
+  dart.setFieldSignature(memento_mixin._MutableIndex, () => ({
+    __proto__: dart.getFields(memento_mixin._MutableIndex.__proto__),
+    value: dart.fieldType(core.int)
+  }));
+  var _history = dart.privateName(memento_mixin, "_history");
+  var _historyLimit = dart.privateName(memento_mixin, "_historyLimit");
+  var _mutableIndex = dart.privateName(memento_mixin, "_mutableIndex");
+  var _historyIndex = dart.privateName(memento_mixin, "_historyIndex");
+  var _addHistory = dart.privateName(memento_mixin, "_addHistory");
+  var __Store__mutableObjects = dart.privateName(store, "_#Store#_mutableObjects");
+  var _mutableObjects = dart.privateName(store, "_mutableObjects");
+  var Duration__duration = dart.privateName(core, "Duration._duration");
+  const _is_Store_default = Symbol('_is_Store_default');
+  store.Store$ = dart.generic((Error, State) => {
+    var _MutableObjectsOfError$State = () => (_MutableObjectsOfError$State = dart.constFn(store._MutableObjects$(Error, State)))();
+    var TripleOfError$State = () => (TripleOfError$State = dart.constFn(triple_model.Triple$(Error, State)))();
+    var EitherOfError$State = () => (EitherOfError$State = dart.constFn(dartz.Either$(Error, State)))();
+    var FutureOfEitherOfError$State = () => (FutureOfEitherOfError$State = dart.constFn(async.Future$(EitherOfError$State())))();
+    var VoidToFutureOfEitherOfError$State = () => (VoidToFutureOfEitherOfError$State = dart.constFn(dart.fnType(FutureOfEitherOfError$State(), [])))();
+    var FutureOfState = () => (FutureOfState = dart.constFn(async.Future$(State)))();
+    var VoidToFutureOfState = () => (VoidToFutureOfState = dart.constFn(dart.fnType(FutureOfState(), [])))();
+    var StreamOfState = () => (StreamOfState = dart.constFn(async.Stream$(State)))();
+    class Store extends core.Object {
+      get [_mutableObjects]() {
+        let t0;
+        t0 = this[__Store__mutableObjects];
+        return t0 == null ? dart.throw(new _internal.LateError.fieldNI("_mutableObjects")) : t0;
+      }
+      set [_mutableObjects](t0) {
+        if (t0 == null) dart.nullFailed(I[2], 48, 44, "null");
+        if (this[__Store__mutableObjects] == null)
+          this[__Store__mutableObjects] = t0;
+        else
+          dart.throw(new _internal.LateError.fieldAI("_mutableObjects"));
+      }
+      get triple() {
+        return this[_mutableObjects].triple;
+      }
+      get lastState() {
+        return this[_mutableObjects].lastState;
+      }
+      get state() {
+        return this[_mutableObjects].triple.state;
+      }
+      get isLoading() {
+        return this[_mutableObjects].triple.isLoading;
+      }
+      get error() {
+        return this[_mutableObjects].triple.error;
+      }
+      propagate(triple) {
+        TripleOfError$State().as(triple);
+        if (triple == null) dart.nullFailed(I[2], 70, 39, "triple");
+        this[_mutableObjects].triple = triple;
+        store._execTripleObserver(triple, this[$runtimeType]);
+      }
+      update(newState, opts) {
+        State.as(newState);
+        if (newState == null) dart.nullFailed(I[2], 78, 21, "newState");
+        let force = opts && 'force' in opts ? opts.force : false;
+        if (force == null) dart.nullFailed(I[2], 78, 37, "force");
+        let candidate = this[_mutableObjects].triple.copyWith({state: newState, event: triple_model.TripleEvent.state});
+        candidate = this.middleware(candidate);
+        if (dart.test(force) || !dart.equals(candidate.state, this[_mutableObjects].triple.state)) {
+          this[_mutableObjects].lastState = candidate.copyWith({isLoading: false});
+          this[_mutableObjects].triple = candidate;
+          this.propagate(this[_mutableObjects].triple);
+        }
+      }
+      setLoading(newloading, opts) {
+        if (newloading == null) dart.nullFailed(I[2], 89, 24, "newloading");
+        let force = opts && 'force' in opts ? opts.force : false;
+        if (force == null) dart.nullFailed(I[2], 89, 42, "force");
+        let candidate = this[_mutableObjects].triple.copyWith({isLoading: newloading, event: triple_model.TripleEvent.loading});
+        candidate = this.middleware(candidate);
+        if (dart.test(force) || candidate.isLoading != this[_mutableObjects].triple.isLoading) {
+          this[_mutableObjects].triple = candidate;
+          this.propagate(this[_mutableObjects].triple);
+        }
+      }
+      setError(newError, opts) {
+        Error.as(newError);
+        if (newError == null) dart.nullFailed(I[2], 99, 23, "newError");
+        let force = opts && 'force' in opts ? opts.force : false;
+        if (force == null) dart.nullFailed(I[2], 99, 39, "force");
+        let candidate = this[_mutableObjects].triple.copyWith({error: newError, event: triple_model.TripleEvent.error});
+        candidate = this.middleware(candidate);
+        if (dart.test(force) || !dart.equals(candidate.error, this[_mutableObjects].triple.error)) {
+          this[_mutableObjects].triple = candidate;
+          this.propagate(this[_mutableObjects].triple);
+        }
+      }
+      middleware(newTriple) {
+        TripleOfError$State().as(newTriple);
+        if (newTriple == null) dart.nullFailed(I[2], 110, 56, "newTriple");
+        return newTriple;
+      }
+      execute(func, opts) {
+        VoidToFutureOfState().as(func);
+        if (func == null) dart.nullFailed(I[2], 118, 49, "func");
+        let delay = opts && 'delay' in opts ? opts.delay : C[0] || CT.C0;
+        if (delay == null) dart.nullFailed(I[2], 118, 65, "delay");
+        return async.async(dart.void, (function* execute() {
+          let t1;
+          let localTime = new core.DateTime.now();
+          this[_mutableObjects].lastExecution = localTime;
+          yield async.Future.delayed(delay);
+          if (!localTime._equals(this[_mutableObjects].lastExecution)) {
+            return;
+          }
+          this.setLoading(true);
+          yield (t1 = this[_mutableObjects].completerExecution, t1 == null ? null : t1.cancel());
+          this[_mutableObjects].completerExecution = cancelable_operation.CancelableOperation.fromFuture(func());
+          yield dart.nullCheck(this[_mutableObjects].completerExecution).then(core.Null, dart.fn(value => {
+            if (State.is(value)) {
+              this.update(value, {force: true});
+              this.setLoading(false);
+            }
+          }, T.dynamicToNull()), {onError: dart.fn((error, __) => {
+              if (error == null) dart.nullFailed(I[2], 139, 17, "error");
+              if (__ == null) dart.nullFailed(I[2], 139, 24, "__");
+              if (Error.is(error)) {
+                this.setError(error, {force: true});
+                this.setLoading(false);
+              } else {
+                dart.throw(core.Exception.new("is expected a " + dart.str(dart.wrapType(Error).toString()) + " type, and receipt " + dart.str(dart.runtimeType(error))));
+              }
+            }, T.ObjectAndStackTraceToNull())}).valueOrCancellation();
+        }).bind(this));
+      }
+      executeEither(func, opts) {
+        VoidToFutureOfEitherOfError$State().as(func);
+        if (func == null) dart.nullFailed(I[2], 154, 70, "func");
+        let delay = opts && 'delay' in opts ? opts.delay : C[0] || CT.C0;
+        if (delay == null) dart.nullFailed(I[2], 154, 86, "delay");
+        return async.async(dart.void, (function* executeEither() {
+          let t1;
+          let localTime = new core.DateTime.now();
+          this[_mutableObjects].lastExecution = localTime;
+          yield async.Future.delayed(delay);
+          if (!localTime._equals(this[_mutableObjects].lastExecution)) {
+            return;
+          }
+          this.setLoading(true);
+          yield (t1 = this[_mutableObjects].completerExecution, t1 == null ? null : t1.cancel());
+          this[_mutableObjects].completerExecution = cancelable_operation.CancelableOperation.fromFuture(func());
+          yield dart.nullCheck(this[_mutableObjects].completerExecution).then(core.Null, dart.fn(value => {
+            if (EitherOfError$State().is(value)) {
+              value.fold(dart.void, dart.bind(this, 'setError'), dart.bind(this, 'update'));
+              this.setLoading(false);
+            }
+          }, T.dynamicToNull())).valueOrCancellation();
+        }).bind(this));
+      }
+      executeStream(stream) {
+        StreamOfState().as(stream);
+        if (stream == null) dart.nullFailed(I[2], 182, 50, "stream");
+        let sub = stream.listen(dart.bind(this, 'update'), {onError: dart.fn(error => this.setError(Error.as(error), {force: true}), T.dynamicTovoid()), onDone: dart.fn(() => this.setLoading(false), T.VoidTovoid())});
+        return sub;
+      }
+    }
+    (Store.new = function(initialState) {
+      if (initialState == null) dart.nullFailed(I[2], 65, 15, "initialState");
+      this[__Store__mutableObjects] = null;
+      this[__Store__mutableObjects] = new (_MutableObjectsOfError$State()).new(initialState);
+      ;
+    }).prototype = Store.prototype;
+    dart.addTypeTests(Store);
+    Store.prototype[_is_Store_default] = true;
+    dart.addTypeCaches(Store);
+    dart.setMethodSignature(Store, () => ({
+      __proto__: dart.getMethods(Store.__proto__),
+      propagate: dart.fnType(dart.void, [dart.nullable(core.Object)]),
+      update: dart.fnType(dart.void, [dart.nullable(core.Object)], {force: core.bool}, {}),
+      setLoading: dart.fnType(dart.void, [core.bool], {force: core.bool}, {}),
+      setError: dart.fnType(dart.void, [dart.nullable(core.Object)], {force: core.bool}, {}),
+      middleware: dart.fnType(triple_model.Triple$(Error, State), [dart.nullable(core.Object)]),
+      execute: dart.fnType(async.Future$(dart.void), [dart.nullable(core.Object)], {delay: core.Duration}, {}),
+      executeEither: dart.fnType(async.Future$(dart.void), [dart.nullable(core.Object)], {delay: core.Duration}, {}),
+      executeStream: dart.fnType(async.StreamSubscription, [dart.nullable(core.Object)])
+    }));
+    dart.setGetterSignature(Store, () => ({
+      __proto__: dart.getGetters(Store.__proto__),
+      [_mutableObjects]: store._MutableObjects$(Error, State),
+      triple: triple_model.Triple$(Error, State),
+      lastState: triple_model.Triple$(Error, State),
+      state: State,
+      isLoading: core.bool,
+      error: dart.nullable(Error)
+    }));
+    dart.setSetterSignature(Store, () => ({
+      __proto__: dart.getSetters(Store.__proto__),
+      [_mutableObjects]: store._MutableObjects$(Error, State)
+    }));
+    dart.setLibraryUri(Store, I[3]);
+    dart.setFieldSignature(Store, () => ({
+      __proto__: dart.getFields(Store.__proto__),
+      [__Store__mutableObjects]: dart.fieldType(dart.nullable(store._MutableObjects$(Error, State)))
+    }));
+    return Store;
+  });
+  store.Store = store.Store$();
+  dart.addTypeTests(store.Store, _is_Store_default);
+  const _is_MementoMixin_default = Symbol('_is_MementoMixin_default');
+  memento_mixin.MementoMixin$ = dart.generic((State, Error) => {
+    var TripleOfError$State = () => (TripleOfError$State = dart.constFn(triple_model.Triple$(Error, State)))();
+    var JSArrayOfTripleOfError$State = () => (JSArrayOfTripleOfError$State = dart.constFn(_interceptors.JSArray$(TripleOfError$State())))();
+    class MementoMixin extends store.Store$(Error, State) {}
+    MementoMixin[dart.mixinOn] = Store => class MementoMixin extends Store {
+      get [_historyIndex]() {
+        return this[_mutableIndex].value;
+      }
+      set [_historyIndex](value) {
+        if (value == null) dart.nullFailed(I[1], 17, 25, "value");
+        return this[_mutableIndex].value = value;
+      }
+      get historyLength() {
+        return this[_history][$length];
+      }
+      canUndo() {
+        return dart.test(this[_history][$isNotEmpty]) && dart.notNull(this[_historyIndex]) > 0;
+      }
+      canRedo() {
+        return dart.notNull(this[_historyIndex]) + 1 < dart.notNull(this[_history][$length]) || !dart.equals(this.triple.state, this.lastState.state);
+      }
+      [_addHistory](observableCache) {
+        if (observableCache == null) dart.nullFailed(I[1], 28, 41, "observableCache");
+        if (this[_historyIndex] == this[_history][$length]) {
+          this[_history][$add](observableCache);
+        } else {
+          let newList = this[_history][$take](dart.notNull(this[_historyIndex]) + 1)[$toList]();
+          this[_history][$clear]();
+          this[_history][$addAll](newList);
+        }
+        if (dart.notNull(this[_history][$length]) > dart.notNull(this[_historyLimit])) {
+          this[_history][$removeAt](0);
+        }
+        this[_historyIndex] = this[_history][$length];
+      }
+      update(newState, opts) {
+        State.as(newState);
+        if (newState == null) dart.nullFailed(I[1], 43, 15, "newState");
+        let force = opts && 'force' in opts ? opts.force : false;
+        if (force == null) dart.nullFailed(I[1], 43, 31, "force");
+        let _last = this.lastState;
+        super.update(newState, {force: force});
+        if (!dart.equals(_last.state, this.triple.state)) {
+          this[_addHistory](_last.copyWith({isLoading: false}));
+        }
+      }
+      undo() {
+        if (dart.test(this.canUndo())) {
+          this[_historyIndex] = dart.notNull(this[_historyIndex]) > dart.notNull(this[_history][$length]) ? math.max(core.int, dart.notNull(this[_history][$length]) - 1, 0) : dart.notNull(this[_historyIndex]) - 1;
+          this.propagate(this[_history][$_get](this[_historyIndex]));
+        }
+      }
+      redo() {
+        if (dart.notNull(this[_historyIndex]) + 1 < dart.notNull(this[_history][$length])) {
+          this[_historyIndex] = dart.notNull(this[_historyIndex]) + 1;
+          this.propagate(this[_history][$_get](this[_historyIndex]));
+        } else if (!dart.equals(this.triple.state, this.lastState.state)) {
+          this[_historyIndex] = dart.notNull(this[_historyIndex]) + 1;
+          this.propagate(this.lastState);
+        }
+      }
+    };
+    (MementoMixin[dart.mixinNew] = function() {
+      this[_history] = JSArrayOfTripleOfError$State().of([]);
+      this[_historyLimit] = 32;
+      this[_mutableIndex] = new memento_mixin._MutableIndex.new();
+    }).prototype = MementoMixin.prototype;
+    dart.addTypeTests(MementoMixin);
+    MementoMixin.prototype[_is_MementoMixin_default] = true;
+    dart.addTypeCaches(MementoMixin);
+    MementoMixin[dart.implements] = () => [store.Store$(Error, State)];
+    dart.setMethodSignature(MementoMixin, () => ({
+      __proto__: dart.getMethods(MementoMixin.__proto__),
+      canUndo: dart.fnType(core.bool, []),
+      canRedo: dart.fnType(core.bool, []),
+      [_addHistory]: dart.fnType(dart.void, [triple_model.Triple$(Error, State)]),
+      undo: dart.fnType(dart.void, []),
+      redo: dart.fnType(dart.void, [])
+    }));
+    dart.setGetterSignature(MementoMixin, () => ({
+      __proto__: dart.getGetters(MementoMixin.__proto__),
+      [_historyIndex]: core.int,
+      historyLength: core.int
+    }));
+    dart.setSetterSignature(MementoMixin, () => ({
+      __proto__: dart.getSetters(MementoMixin.__proto__),
+      [_historyIndex]: core.int
+    }));
+    dart.setLibraryUri(MementoMixin, I[0]);
+    dart.setFieldSignature(MementoMixin, () => ({
+      __proto__: dart.getFields(MementoMixin.__proto__),
+      [_history]: dart.finalFieldType(core.List$(triple_model.Triple$(Error, State))),
+      [_historyLimit]: dart.finalFieldType(core.int),
+      [_mutableIndex]: dart.finalFieldType(memento_mixin._MutableIndex)
+    }));
+    return MementoMixin;
+  });
+  memento_mixin.MementoMixin = memento_mixin.MementoMixin$();
+  dart.addTypeTests(memento_mixin.MementoMixin, _is_MementoMixin_default);
+  var __DispatchedTriple__triple = dart.privateName(dispatched_triple, "_#DispatchedTriple#_triple");
+  var __DispatchedTriple_storeTypeName = dart.privateName(dispatched_triple, "_#DispatchedTriple#storeTypeName");
+  var _triple = dart.privateName(dispatched_triple, "_triple");
+  const _is_DispatchedTriple_default = Symbol('_is_DispatchedTriple_default');
+  dispatched_triple.DispatchedTriple$ = dart.generic((Error, State) => {
+    class DispatchedTriple extends core.Object {
+      get [_triple]() {
+        let t1;
+        t1 = this[__DispatchedTriple__triple];
+        return t1 == null ? dart.throw(new _internal.LateError.fieldNI("_triple")) : t1;
+      }
+      set [_triple](t1) {
+        if (t1 == null) dart.nullFailed(I[4], 4, 35, "null");
+        if (this[__DispatchedTriple__triple] == null)
+          this[__DispatchedTriple__triple] = t1;
+        else
+          dart.throw(new _internal.LateError.fieldAI("_triple"));
+      }
+      get storeTypeName() {
+        let t2;
+        t2 = this[__DispatchedTriple_storeTypeName];
+        return t2 == null ? dart.throw(new _internal.LateError.fieldNI("storeTypeName")) : t2;
+      }
+      set storeTypeName(t2) {
+        if (t2 == null) dart.nullFailed(I[4], 5, 21, "null");
+        if (this[__DispatchedTriple_storeTypeName] == null)
+          this[__DispatchedTriple_storeTypeName] = t2;
+        else
+          dart.throw(new _internal.LateError.fieldAI("storeTypeName"));
+      }
+      get state() {
+        return this[_triple].state;
+      }
+      get error() {
+        return this[_triple].error;
+      }
+      get isLoading() {
+        return this[_triple].isLoading;
+      }
+      get event() {
+        return this[_triple].event;
+      }
+      toString() {
+        if (this.event == triple_model.TripleEvent.state) {
+          return dart.str(this.storeTypeName) + ".state = " + dart.str(this.state);
+        } else if (this.event == triple_model.TripleEvent.error) {
+          return dart.str(this.storeTypeName) + ".error = " + dart.str(this.error);
+        } else if (this.event == triple_model.TripleEvent.loading) {
+          return dart.str(this.storeTypeName) + ".isLoading = " + dart.str(this.isLoading);
+        } else {
+          return super[$toString]();
+        }
+      }
+    }
+    (DispatchedTriple.new = function(triple, storeType) {
+      if (triple == null) dart.nullFailed(I[4], 11, 41, "triple");
+      if (storeType == null) dart.nullFailed(I[4], 11, 54, "storeType");
+      this[__DispatchedTriple__triple] = null;
+      this[__DispatchedTriple_storeTypeName] = null;
+      this[_triple] = triple;
+      this.storeTypeName = dart.toString(storeType);
+    }).prototype = DispatchedTriple.prototype;
+    dart.addTypeTests(DispatchedTriple);
+    DispatchedTriple.prototype[_is_DispatchedTriple_default] = true;
+    dart.addTypeCaches(DispatchedTriple);
+    dart.setGetterSignature(DispatchedTriple, () => ({
+      __proto__: dart.getGetters(DispatchedTriple.__proto__),
+      [_triple]: triple_model.Triple$(Error, State),
+      storeTypeName: core.String,
+      state: State,
+      error: dart.nullable(Error),
+      isLoading: core.bool,
+      event: triple_model.TripleEvent
+    }));
+    dart.setSetterSignature(DispatchedTriple, () => ({
+      __proto__: dart.getSetters(DispatchedTriple.__proto__),
+      [_triple]: triple_model.Triple$(Error, State),
+      storeTypeName: core.String
+    }));
+    dart.setLibraryUri(DispatchedTriple, I[5]);
+    dart.setFieldSignature(DispatchedTriple, () => ({
+      __proto__: dart.getFields(DispatchedTriple.__proto__),
+      [__DispatchedTriple__triple]: dart.fieldType(dart.nullable(triple_model.Triple$(Error, State))),
+      [__DispatchedTriple_storeTypeName]: dart.fieldType(dart.nullable(core.String))
+    }));
+    dart.defineExtensionMethods(DispatchedTriple, ['toString']);
+    return DispatchedTriple;
+  });
+  dispatched_triple.DispatchedTriple = dispatched_triple.DispatchedTriple$();
+  dart.addTypeTests(dispatched_triple.DispatchedTriple, _is_DispatchedTriple_default);
+  store.TripleObserver = class TripleObserver extends core.Object {
+    static addListener(callback) {
+      if (callback == null) dart.nullFailed(I[2], 23, 42, "callback");
+      store._tripleCallbackList.add(callback);
+    }
+    static removeListener(callback) {
+      if (callback == null) dart.nullFailed(I[2], 27, 45, "callback");
+      store._tripleCallbackList.remove(callback);
+    }
+  };
+  (store.TripleObserver.__ = function() {
+    ;
+  }).prototype = store.TripleObserver.prototype;
+  dart.addTypeTests(store.TripleObserver);
+  dart.addTypeCaches(store.TripleObserver);
+  dart.setLibraryUri(store.TripleObserver, I[3]);
+  var ___MutableObjects_triple = dart.privateName(store, "_#_MutableObjects#triple");
+  var ___MutableObjects_lastState = dart.privateName(store, "_#_MutableObjects#lastState");
+  const _is__MutableObjects_default = Symbol('_is__MutableObjects_default');
+  store._MutableObjects$ = dart.generic((Error, State) => {
+    var TripleOfError$State = () => (TripleOfError$State = dart.constFn(triple_model.Triple$(Error, State)))();
+    class _MutableObjects extends core.Object {
+      get triple() {
+        let t3;
+        t3 = this[___MutableObjects_triple];
+        return t3 == null ? dart.throw(new _internal.LateError.fieldNI("triple")) : t3;
+      }
+      set triple(t3) {
+        TripleOfError$State().as(t3);
+        if (t3 == null) dart.nullFailed(I[2], 35, 29, "null");
+        this[___MutableObjects_triple] = t3;
+      }
+      get lastState() {
+        let t4;
+        t4 = this[___MutableObjects_lastState];
+        return t4 == null ? dart.throw(new _internal.LateError.fieldNI("lastState")) : t4;
+      }
+      set lastState(t4) {
+        TripleOfError$State().as(t4);
+        if (t4 == null) dart.nullFailed(I[2], 36, 29, "null");
+        this[___MutableObjects_lastState] = t4;
+      }
+    }
+    (_MutableObjects.new = function(state) {
+      if (state == null) dart.nullFailed(I[2], 40, 25, "state");
+      this[___MutableObjects_triple] = null;
+      this[___MutableObjects_lastState] = null;
+      this.completerExecution = null;
+      this.lastExecution = new core.DateTime.now();
+      this.triple = new (TripleOfError$State()).new({state: state});
+      this.lastState = new (TripleOfError$State()).new({state: state});
+    }).prototype = _MutableObjects.prototype;
+    dart.addTypeTests(_MutableObjects);
+    _MutableObjects.prototype[_is__MutableObjects_default] = true;
+    dart.addTypeCaches(_MutableObjects);
+    dart.setGetterSignature(_MutableObjects, () => ({
+      __proto__: dart.getGetters(_MutableObjects.__proto__),
+      triple: triple_model.Triple$(Error, State),
+      lastState: triple_model.Triple$(Error, State)
+    }));
+    dart.setSetterSignature(_MutableObjects, () => ({
+      __proto__: dart.getSetters(_MutableObjects.__proto__),
+      triple: dart.nullable(core.Object),
+      lastState: dart.nullable(core.Object)
+    }));
+    dart.setLibraryUri(_MutableObjects, I[3]);
+    dart.setFieldSignature(_MutableObjects, () => ({
+      __proto__: dart.getFields(_MutableObjects.__proto__),
+      [___MutableObjects_triple]: dart.fieldType(dart.nullable(triple_model.Triple$(Error, State))),
+      [___MutableObjects_lastState]: dart.fieldType(dart.nullable(triple_model.Triple$(Error, State))),
+      completerExecution: dart.fieldType(dart.nullable(cancelable_operation.CancelableOperation)),
+      lastExecution: dart.fieldType(core.DateTime)
+    }));
+    return _MutableObjects;
+  });
+  store._MutableObjects = store._MutableObjects$();
+  dart.addTypeTests(store._MutableObjects, _is__MutableObjects_default);
+  store._execTripleObserver = function _execTripleObserver(triple, storeType) {
+    if (triple == null) dart.nullFailed(I[2], 16, 33, "triple");
+    if (storeType == null) dart.nullFailed(I[2], 16, 46, "storeType");
+    for (let callback of store._tripleCallbackList) {
+      callback(new (T.DispatchedTripleOfObject$Object()).new(triple, storeType));
+    }
+  };
+  dart.defineLazy(store, {
+    /*store._tripleCallbackList*/get _tripleCallbackList() {
+      return T.LinkedHashSetOfDispatchedTripleOfObject$ObjectTovoid().new();
+    }
+  }, false);
+  dart.trackLibraries("packages/triple/src/memento_mixin.dart", {
+    "package:triple/src/memento_mixin.dart": memento_mixin,
+    "package:triple/src/models/dispatched_triple.dart": dispatched_triple,
+    "package:triple/src/store.dart": store,
+    "package:triple/triple.dart": triple
+  }, {
+  }, '{"version":3,"sourceRoot":"","sources":["memento_mixin.dart","store.dart","models/dispatched_triple.dart"],"names":[],"mappings":"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","file":"../../../../../../../../packages/triple/src/memento_mixin.dart.lib.js"}');
+  // Exports:
+  return {
+    src__memento_mixin: memento_mixin,
+    src__models__dispatched_triple: dispatched_triple,
+    src__store: store,
+    triple: triple
+  };
+}));
+
+//# sourceMappingURL=memento_mixin.dart.lib.js.map
